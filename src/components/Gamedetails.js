@@ -59,7 +59,7 @@ const starMesh = (count) => {
     <CardShadow  className="shadow" onClick={exitDetailHandler}>
     <Detail >
       <Stats>
-        <div className="rating">
+        <Rateflex>
           <motion.h3>{game.name}</motion.h3>
           <Rating>
           <div class="stars-outer">
@@ -67,9 +67,8 @@ const starMesh = (count) => {
           class="stars-inner" id="sta"></div>
           </div>
           <p>Rating: {game.rating}</p>
-          
           </Rating>
-        </div>
+        </Rateflex>
         <Info>
           <h3>Platforms</h3>
           <Platforms>
@@ -142,29 +141,61 @@ const Detail = styled(motion.div)`
   left: 10%;
   color: black;
   z-index: 10;
+ 
   img {
     width: 100%;
   }
 `;
 
+const Rateflex = styled.div`
+ @media (max-width: 600px){
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width:100%;
+  flex-wrap: wrap
+
+    }
+`
+
 const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 600px){
+      flex-direction: column;
+    
+    }
   img {
     width: 2rem;
     height: 2rem;
     display: inline;
+    @media (max-width: 950px){
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+    @media (max-width: 600px){
+      margin-top: 2rem;
+      align-self: center;
+    }
   }
 `;
 const Info = styled(motion.div)`
   text-align: center;
+  @media (max-width: 600px){
+      h3{
+        display: none;
+      }
+    }
 `;
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   img {
     margin-left: 3rem;
+    @media (max-width: 950px){
+    margin-left:2rem
+    }
   }
 `;
 
@@ -180,6 +211,11 @@ const Description = styled(motion.div)`
 `;
 
 const Rating = styled.div`
+ @media (max-width: 600px){
+     p{
+       display: none
+     }
+    }
 .stars-outer {
   position: relative;
   display: inline-block;
@@ -188,8 +224,11 @@ const Rating = styled.div`
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #ccc;
+  @media (max-width: 950px){
+      font-size: 1rem;
+    }
 }
 }
 
@@ -205,8 +244,11 @@ const Rating = styled.div`
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  font-size: 3rem;
+  font-size: 2rem;
   color: #FF9529;
+  @media (max-width: 950px){
+      font-size: 1rem;
+    }
 }
 }
 

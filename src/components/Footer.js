@@ -41,6 +41,9 @@ const Logo = styled.div`
     height: 2rem;
     width: 2rem;
   }
+  h1{
+    font-size: 1.6rem
+  }
 `;
 
 const Styleddesign = styled.div`

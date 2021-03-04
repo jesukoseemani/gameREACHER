@@ -100,6 +100,12 @@ const StyledNav = styled(motion.nav)`
     border: none;
     margin-top: 1rem;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+    @media (max-width: 950px){
+       width:50%
+    }
+    @media (max-width: 600px){
+       width:90%
+    }
   }
   button {
     font-size: 1.5rem;
@@ -109,7 +115,12 @@ const StyledNav = styled(motion.nav)`
     background: #ff7676;
     color: white;
     outline: none;
-  
+    @media (max-width: 950px){
+      padding: 0.5rem  2rem;
+    }
+    @media (max-width: 600px){
+       margin-top: 1.2rem;
+    }
   }
 `;
 
