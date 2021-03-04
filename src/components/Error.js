@@ -18,13 +18,13 @@ const StyledErr = styled.div`
 margin: 1rem;
 .green{
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-style: italic;
   color: green;
 }
 .red{
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-style: italic;
   color: red;
 }

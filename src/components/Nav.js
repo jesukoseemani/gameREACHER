@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {useState, useEffect} from "react"
 import {fetchSearch} from "../Actions/gamesActions"
 import { fadeIn } from "../animation";
+import Loader from "../components/Loader"
 
 import Error from "../components/Error"
 
@@ -21,6 +22,10 @@ const[info, setInfo] = useState({
   message: "",
   class: ""
 })
+const[style, setStyle] = useState(false)
+const[loading, setLoading] = useState(false)
+const[disabled, setDisabled] = useState(false)
+
 
 
 
@@ -28,12 +33,19 @@ const textInputHandler = (e) => {
 const input = e.target.value
 
 setTextInput(input)
+
+dispatch(fetchSearch(textInput));
 }
 
 const submitHandler = (e) => {
  e.preventDefault()
 if(textInput !== ""){
-  dispatch(fetchSearch(textInput))
+
+  setLoading(true)
+  setDisabled(!disabled)
+  
+
+  setStyle(false)
   if(searched.length){
     setInfo({
       ...info,
@@ -43,10 +55,14 @@ if(textInput !== ""){
   }else{
     setInfo({
       ...info,
-      message: "There is no corresponding game, you can checkout closely related game...",
-      class: "red"
     })
   }
+
+  setTimeout(() => {
+    dispatch(fetchSearch(textInput));
+    setLoading(false)
+    setDisabled(false)
+   }, 3000);
   
 }else{
   setInfo({
@@ -54,9 +70,10 @@ if(textInput !== ""){
     message: "You need to type something on the input box...",
     class:"red"
   })
+  setStyle(true)
 }
  
-
+ 
  setTextInput("")
 }
 const clearSearched = () => {
@@ -69,6 +86,7 @@ useEffect(() => {
       message: "",
       class: ""
     })
+    setStyle(false)
    }, 3000);
    return () => clearTimeout(timer);
  },[info]);
@@ -79,13 +97,15 @@ useEffect(() => {
         <img src={logo} alt="logo" />
         <h1>gameREACHER</h1>
       </Logo>
-      <Error info={info} setInfo={setInfo} />
+     
       <form className="search">
-        <input value={textInput} onChange={textInputHandler} type="text" />
-        <button onClick={submitHandler} type="submit">
+        <input style={{ border: `${style ? "1px solid red" : ""}`}} value={textInput} onChange={textInputHandler} type="text" />
+        <button onClick={submitHandler} type="submit" disabled={disabled}>
           Search
         </button>
       </form>
+      <Error info={info} setInfo={setInfo} />
+     {loading && <Loader />}
     </StyledNav>
   );
 };
@@ -115,6 +135,14 @@ const StyledNav = styled(motion.nav)`
     background: #ff7676;
     color: white;
     outline: none;
+    &:disabled,
+    &[disabled] {
+  background-color: transparent;
+  pointer-events: none;
+  color: rgb(196, 196, 196);
+  border: none;
+  outline: none;
+}
     @media (max-width: 950px){
       padding: 0.5rem  2rem;
     }

@@ -27,9 +27,9 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 height: 10vh;
-background-color: #808080;
+background-color: #fafafa;
 margin: 1.5rem;
-color: #fafafa
+color: #e49400
 `;
 
 const Logo = styled.div`
@@ -49,8 +49,9 @@ const Logo = styled.div`
 const Styleddesign = styled.div`
 margin-right: 2rem;
 p{
-  color: #fafafa;
+  color: #e49400;
   font-style: italic;
+  font-weight: bold;
 }
 `
 
