@@ -46,6 +46,13 @@ const getPlatform = (platform) => {
 
 const {game, screenshot, isLoading} = useSelector((state) => state.details)
 
+const starMesh = (count) => {
+
+  const starPercentage = (count / 5) * 100;
+  const starRounded = Math.round(starPercentage / 10) * 10
+
+  return starRounded;
+}
   return(
     <>
     {!isLoading && (
@@ -56,9 +63,11 @@ const {game, screenshot, isLoading} = useSelector((state) => state.details)
           <motion.h3>{game.name}</motion.h3>
           <Rating>
           <div class="stars-outer">
-          <div style={{width: `${game.rating}%`}} class="stars-inner" id="sta"></div>
+          <div style={{width: `${starMesh(game.rating)}%`}} 
+          class="stars-inner" id="sta"></div>
           </div>
           <p>Rating: {game.rating}</p>
+          
           </Rating>
         </div>
         <Info>
@@ -197,7 +206,7 @@ const Rating = styled.div`
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 3rem;
-  color: #ff9100;
+  color: #FF9529;
 }
 }
 
