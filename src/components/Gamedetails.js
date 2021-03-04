@@ -54,7 +54,12 @@ const {game, screenshot, isLoading} = useSelector((state) => state.details)
       <Stats>
         <div className="rating">
           <motion.h3>{game.name}</motion.h3>
+          <Rating>
+          <div class="stars-outer">
+          <div style={{width: `${game.rating}%`}} class="stars-inner" id="sta"></div>
+          </div>
           <p>Rating: {game.rating}</p>
+          </Rating>
         </div>
         <Info>
           <h3>Platforms</h3>
@@ -165,5 +170,41 @@ const Description = styled(motion.div)`
   margin: 5rem 0rem;
 `;
 
+const Rating = styled.div`
+.stars-outer {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 3rem;
+  color: #ccc;
+}
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0%;
+
+  &::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 3rem;
+  color: #ff9100;
+}
+}
+
+
+
+
+
+`
 
 export default Gamedetails
