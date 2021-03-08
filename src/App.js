@@ -1,6 +1,6 @@
 import Home from "./pages/Home"
 import GlobalStyles from "./components/GlobalStyles"
-import {Route, Switch, useLocation} from "react-router-dom"
+import {Route, Switch, useLocation, Redirect} from "react-router-dom"
 import Footer from "./components/Footer"
 import Gamedetails from "./components/Gamedetails"
 import { AnimatePresence } from "framer-motion";
@@ -24,6 +24,8 @@ function App() {
      <Route path="/game/:id" exact>
      <Gamedetails />
      </Route>
+
+     <Redirect to="/" />
 
      </Switch>
     </AnimatePresence>
