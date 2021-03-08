@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect} from "react"
 import styled from "styled-components"
 import {motion} from "framer-motion"
 import {useDispatch} from "react-redux"
@@ -8,17 +8,24 @@ import { smallImage} from "../util"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKissBeam , faKissWinkHeart } from '@fortawesome/free-solid-svg-icons';
 
-const Game = ({ name, released, image, id , favorite, setFavorite }) => {
+const Game = ({ name, released, image, id , favorite, setFavorite}) => {
+  
 
   const dispatch = useDispatch()
+ 
   const [icon, setIcon] = useState(false)
-  
+
+  useEffect(() => {
+    let data = JSON.parse(localStorage.getItem("favorite"))
+    data.map(item => item.id === id ? setIcon(true) : "")
+  }, [id]);
 
 
 const loadDetailsHandler = () => {
  
   dispatch(detailAction(id))
 }
+
 const clickHandler = () => {
   setIcon(!icon)
   if(icon !== true){
@@ -28,7 +35,8 @@ const clickHandler = () => {
       name, 
       released, 
       image, 
-      id
+      id,
+      active: true
     }
   ])
   }else{
@@ -53,9 +61,10 @@ useEffect(() => {
 
 
 
+
+
   return(
-     <StyledGame 
-      >
+     <StyledGame >
        
        <h3>{name}</h3>
        <StyledPi>

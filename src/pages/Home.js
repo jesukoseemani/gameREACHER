@@ -20,6 +20,8 @@ const Home = () => {
 const [favorite, setFavorite] = useState([])
 
 
+
+
   const dispatch = useDispatch()
 
 
@@ -31,7 +33,7 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
 
 useEffect(() => {
   getFromLocalStorage();
-
+  
 },[])
 
 const getFromLocalStorage = () => {
@@ -40,7 +42,7 @@ const getFromLocalStorage = () => {
     localStorage.setItem("favorite", JSON.stringify([]));
   }else{
     let data = JSON.parse(localStorage.getItem("favorite"))
-      
+    
     setFavorite(data);
     
   }
@@ -60,7 +62,10 @@ const getFromLocalStorage = () => {
         released={fav.released}
         id={fav.id}
         image={fav.image}
-        key={fav.id} />
+        key={fav.id}
+        favorite= {favorite}
+        setFavorite= {setFavorite}
+         />
       ))}
       </Games>
       </div>
