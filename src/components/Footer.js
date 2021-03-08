@@ -29,7 +29,10 @@ align-items: center;
 height: 10vh;
 background-color: #fafafa;
 margin: 1.5rem;
-color: #e49400
+color: #e49400;
+@media(max-width: 950px){
+    flex-direction: column;
+    }
 `;
 
 const Logo = styled.div`
@@ -37,21 +40,35 @@ const Logo = styled.div`
   justify-content: center;
   padding: 1rem;
   cursor: pointer;
+  @media (max-width: 950px){
+    padding: .2rem;
+    }
   img {
     height: 2rem;
     width: 2rem;
   }
   h1{
-    font-size: 1.6rem
+    font-size: 1.6rem;
+    @media(max-width: 950px){
+    font-size: 1rem;
+    }
+   
   }
 `;
 
 const Styleddesign = styled.div`
 margin-right: 2rem;
+/* @media (max-width: 950px){
+    
+    } */
+   
 p{
-  color: #e49400;
+  color: black;
   font-style: italic;
   font-weight: bold;
+  @media(max-width: 950px){
+    font-size: 1rem;
+    }
 }
 `
 

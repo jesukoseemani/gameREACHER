@@ -1,31 +1,79 @@
+import {useState, useEffect} from "react"
 import styled from "styled-components"
 import {motion} from "framer-motion"
 import {useDispatch} from "react-redux"
 import {detailAction} from "../Actions/detailAction"
 import { Link } from "react-router-dom"
 import { smallImage} from "../util"
-import { popup } from "../animation";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faKissBeam , faKissWinkHeart } from '@fortawesome/free-solid-svg-icons';
 
-const Game = ({ name, released, image, id }) => {
-const dispatch = useDispatch()
+const Game = ({ name, released, image, id , favorite, setFavorite }) => {
+
+  const dispatch = useDispatch()
+  const [icon, setIcon] = useState(false)
+  
+
 
 const loadDetailsHandler = () => {
-  document.body.style.overflow = "hidden";
+ 
   dispatch(detailAction(id))
 }
+const clickHandler = () => {
+  setIcon(!icon)
+  if(icon !== true){
+    setFavorite([
+      ...favorite,
+      {
+      name, 
+      released, 
+      image, 
+      id
+    }
+  ])
+  }else{
+    setFavorite(favorite.filter(game => game.id !== id))
+  }
+ 
+
+}
+const saveToLocalStorage = () => {
+
+  localStorage.setItem("favorite", JSON.stringify(favorite));
+   
+  }
+
+useEffect(() => {
+  saveToLocalStorage();
+// eslint-disable-next-line
+},[favorite])
+
+
+
+
 
 
   return(
      <StyledGame 
-     variants={popup}
-     initial="hidden"
-     animate="show"
-      onClick={loadDetailsHandler}>
-       <Link to={`/game/${id}`}>
+      >
+       
        <h3>{name}</h3>
+       <StyledPi>
+       <div className="icon-word">
        <p>{released}</p>
+       </div>
+       <div className="icon">
+       
+       <FontAwesomeIcon onClick={clickHandler} style={{color: icon ? "#FF0000": "#7a7a7a"}} icon={icon ? faKissWinkHeart : faKissBeam} size="2x" / >
+       
+       </div>
+       </StyledPi >
+       <div onClick={loadDetailsHandler}>
+       <Link to={`/game/${id}`}>
+
        <img src={smallImage(image, 640)} alt={name} />
        </Link>
+       </div>
     </StyledGame>
   )
 }
@@ -35,7 +83,6 @@ const StyledGame = styled(motion.div)`
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 1rem;
-  cursor: pointer;
   overflow: hidden;
  
   img {
@@ -43,7 +90,18 @@ const StyledGame = styled(motion.div)`
     height: 40vh;
     object-fit: cover;
     object-position: top;
+    cursor: pointer;
   }
 `;
+const StyledPi = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: .5rem .8rem;
+
+.icon{
+  cursor: pointer;
+}
+`
 
 export default Game

@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux"
 import styled from "styled-components"
 import {motion} from "framer-motion"
-import {useHistory} from "react-router-dom"
+// import {useHistory} from "react-router-dom"
 import { smallImage} from "../util"
 import playstation from "../img/playstation.svg";
 import steam from "../img/steam.svg";
@@ -10,15 +10,15 @@ import nintendo from "../img/nintendo.svg";
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
 
-const Gamedetails = ({pathId}) => {
-const History = useHistory()
-const exitDetailHandler= (e) => {
-  const element = e.target
-  if(element.classList.contains("shadow")){
-    document.body.style.overflow = "auto"
-    History.push("/")
-  }
-}
+const Gamedetails = () => {
+// const History = useHistory()
+// const exitDetailHandler= (e) => {
+//   const element = e.target
+//   if(element.classList.contains("shadow")){
+//     document.body.style.overflow = "auto"
+//     History.push("/")
+//   }
+// }
 
 const getPlatform = (platform) => {
   switch(platform){
@@ -55,8 +55,7 @@ const starMesh = (count) => {
 }
   return(
     <>
-    {!isLoading && (
-    <CardShadow  className="shadow" onClick={exitDetailHandler}>
+   {!isLoading && (
     <Detail >
       <Stats>
         <Rateflex>
@@ -102,45 +101,41 @@ const starMesh = (count) => {
         ))}
       </div>
     </Detail>
-  </CardShadow>
-  )}
+    )}
 </>
 
   )
 }
 
-const CardShadow = styled(motion.div)`
-  width: 100%;
-  min-height: 100vh;
-  overflow-y: scroll;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 5;
+// const CardShadow = styled(motion.div)`
+//   width: 100%;
+//   min-height: 100vh;
+//   overflow-y: scroll;
+//   background: rgba(0, 0, 0, 0.5);
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   z-index: 5;
 
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-  }
+//   &::-webkit-scrollbar {
+//     width: 0.5rem;
+//   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #ff7676;
-  }
+//   &::-webkit-scrollbar-thumb {
+//     background-color: #ff7676;
+//   }
 
-  &::-webkit-scrollbar-track {
-    background: white;
-  }
-`;
+//   &::-webkit-scrollbar-track {
+//     background: white;
+//   }
+// `;
 
 const Detail = styled(motion.div)`
-  width: 80%;
+  width: 100%;
   border-radius: 1rem;
-  padding: 2rem 5rem;
+  padding: 2rem 1rem;
   background: white;
-  position: absolute;
-  left: 10%;
   color: black;
-  z-index: 10;
  
   img {
     width: 100%;

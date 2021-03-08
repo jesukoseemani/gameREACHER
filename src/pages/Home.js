@@ -1,33 +1,72 @@
-import {useEffect} from "react"
+import {useState, useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
 import {gamesActions} from "../Actions/gamesActions"
 import styled from "styled-components"
 import {motion} from "framer-motion"
+import Nav from "../components/Nav"
 import Game from "../components/Game"
-import Gamedetails from "../components/Gamedetails"
-import {useLocation} from "react-router-dom"
+import Testes from "../components/Testes"
+
+
+// import {useLocation} from "react-router-dom"
 import { fadeIn } from "../animation";
 
 
 const Home = () => {
-const Location = useLocation()
-const pathId = Location.pathname.split("/")[2]
+// const Location = useLocation()
+// const pathId = Location.pathname.split("/")[2]
 
+
+const [favorite, setFavorite] = useState([])
 
 
   const dispatch = useDispatch()
+
+
   useEffect(()=>{
    dispatch(gamesActions())
   },[dispatch])
 
 const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
 
+useEffect(() => {
+  getFromLocalStorage();
+
+},[])
+
+const getFromLocalStorage = () => {
+
+  if(localStorage.getItem("favorite") === null){
+    localStorage.setItem("favorite", JSON.stringify([]));
+  }else{
+    let data = JSON.parse(localStorage.getItem("favorite"))
+      
+    setFavorite(data);
+    
+  }
+  
+}
+
   return(
     <GameList variants={fadeIn} initial="hidden" animate="show">
-      
-      
-     {pathId && <Gamedetails pathId={pathId} />}
+      <Nav />
+    {favorite.length ? (
+    <div className="watchlist">
+     <h2>Your WatchList</h2>
+      <Games>
+      {favorite.map(fav => (
+        <Testes 
+        name={fav.name}
+        released={fav.released}
+        id={fav.id}
+        image={fav.image}
+        key={fav.id} />
+      ))}
+      </Games>
+      </div>
+      ) : ""}
      
+
      {searched.length ? (
        <div className="searched">
      <h2>Searched Games</h2>
@@ -39,6 +78,8 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
         id={game.id}
         image={game.background_image}
         key={game.id}
+        favorite= {favorite}
+        setFavorite= {setFavorite}
         />
       ))}
       </Games>
@@ -53,6 +94,8 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
         id={game.id}
         image={game.background_image}
         key={game.id}
+        favorite= {favorite}
+        setFavorite= {setFavorite}
         />
       ))}
       </Games>
@@ -66,6 +109,8 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
         id={game.id}
         image={game.background_image}
         key={game.id}
+        favorite= {favorite}
+        setFavorite= {setFavorite}
         />
       ))}
       </Games>
@@ -79,6 +124,8 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
         id={game.id}
         image={game.background_image}
         key={game.id}
+        favorite= {favorite}
+        setFavorite= {setFavorite}
         />
       ))}
       </Games>
@@ -107,5 +154,6 @@ const Games = styled(motion.div)`
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
 `;
+
 
 export default Home

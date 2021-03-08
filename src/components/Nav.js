@@ -2,7 +2,7 @@
 //Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import logo from "../img/logo.svg";
+
 //Redux and Routes
 import {useDispatch, useSelector} from "react-redux"
 import {useState, useEffect} from "react"
@@ -76,9 +76,7 @@ if(textInput !== ""){
  
  setTextInput("")
 }
-const clearSearched = () => {
-  dispatch({ type: "CLEAR_SEARCHED" });
-};
+
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -93,11 +91,6 @@ useEffect(() => {
   
   return (
     <StyledNav variants={fadeIn} initial="hidden" animate="show">
-      <Logo onClick={clearSearched}>
-        <img src={logo} alt="logo" />
-        <h1>gameREACHER</h1>
-      </Logo>
-     
       <form className="search">
         <input style={{ border: `${style ? "1px solid red" : ""}`}} value={textInput} onChange={textInputHandler} type="text" />
         <button onClick={submitHandler} type="submit" disabled={disabled}>
@@ -113,15 +106,21 @@ useEffect(() => {
 const StyledNav = styled(motion.nav)`
   padding: 3rem 5rem;
   text-align: center;
+  @media (max-width: 950px){
+    padding: 3rem .7rem;
+    }
+    @media (max-width: 600px){
+      padding: 3rem .7rem;
+    }
   input {
-    width: 30%;
+    width: 50%;
     font-size: 1.5rem;
     padding: 0.5rem;
     border: none;
     margin-top: 1rem;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
     @media (max-width: 950px){
-       width:50%
+       width:70%
     }
     @media (max-width: 600px){
        width:90%
@@ -152,15 +151,5 @@ const StyledNav = styled(motion.nav)`
   }
 `;
 
-const Logo = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-  cursor: pointer;
-  img {
-    height: 2rem;
-    width: 2rem;
-  }
-`;
 
 export default Nav;
