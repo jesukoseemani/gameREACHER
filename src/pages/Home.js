@@ -55,7 +55,7 @@ const getFromLocalStorage = () => {
     {favorite.length ? (
     <div className="watchlist">
      <h2>Your WatchList</h2>
-      <Games>
+      <Gamesf>
       {favorite.map(fav => (
         <Testes 
         name={fav.name}
@@ -67,7 +67,7 @@ const getFromLocalStorage = () => {
         setFavorite= {setFavorite}
          />
       ))}
-      </Games>
+      </Gamesf>
       </div>
       ) : ""}
      
@@ -159,6 +159,11 @@ const Games = styled(motion.div)`
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
 `;
+const Gamesf = styled(Games)`
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 30rem));
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+`
 
 
 export default Home

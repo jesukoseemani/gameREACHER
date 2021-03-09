@@ -12,8 +12,21 @@ const Game = ({ name, released, image, id , favorite, setFavorite}) => {
   
 
   const dispatch = useDispatch()
- 
+  
+  
+  
   const [icon, setIcon] = useState(false)
+  const saveToLocalStorage = () => {
+
+    localStorage.setItem("favorite", JSON.stringify(favorite));
+     
+    }
+  
+  useEffect(() => {
+    saveToLocalStorage();
+  // eslint-disable-next-line
+  },[favorite])
+  
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("favorite"))
@@ -45,16 +58,6 @@ const clickHandler = () => {
  
 
 }
-const saveToLocalStorage = () => {
-
-  localStorage.setItem("favorite", JSON.stringify(favorite));
-   
-  }
-
-useEffect(() => {
-  saveToLocalStorage();
-// eslint-disable-next-line
-},[favorite])
 
 
 

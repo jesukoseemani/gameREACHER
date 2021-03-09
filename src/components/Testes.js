@@ -33,7 +33,6 @@ const Testes = ({ name, released, image, id}) => {
 
 const StyledGame = styled(motion.div)`
   height: 60vh;
-  width: 35vw;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 1rem;
