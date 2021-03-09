@@ -36,7 +36,7 @@ const clickHandler = () => {
       released, 
       image, 
       id,
-      active: true
+      
     }
   ])
   }else{

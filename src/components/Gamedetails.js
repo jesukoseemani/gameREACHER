@@ -1,7 +1,7 @@
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
 import styled from "styled-components"
 import {motion} from "framer-motion"
-// import {useHistory} from "react-router-dom"
+import {useLocation} from "react-router-dom"
 import { smallImage} from "../util"
 import playstation from "../img/playstation.svg";
 import steam from "../img/steam.svg";
@@ -9,6 +9,8 @@ import xbox from "../img/xbox.svg";
 import nintendo from "../img/nintendo.svg";
 import apple from "../img/apple.svg";
 import gamepad from "../img/gamepad.svg";
+import {useEffect} from "react"
+import {detailAction} from "../Actions/detailAction"
 
 const Gamedetails = () => {
 // const History = useHistory()
@@ -19,6 +21,17 @@ const Gamedetails = () => {
 //     History.push("/")
 //   }
 // }
+const location = useLocation()
+const id = location.pathname.split("/")[2]
+
+const dispatch = useDispatch()
+
+useEffect(()=> {
+
+
+  dispatch(detailAction(id))
+},[dispatch, id])
+
 
 const getPlatform = (platform) => {
   switch(platform){

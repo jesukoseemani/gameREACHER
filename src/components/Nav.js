@@ -67,7 +67,7 @@ if(textInput !== ""){
 }else{
   setInfo({
     ...info,
-    message: "You need to type something on the input box...",
+    message: "Hello, This is an error and you need to type something here",
     class:"red"
   })
   setStyle(true)
