@@ -3,12 +3,15 @@ import { motion } from "framer-motion";
 import logo from "../img/logo.svg";
 import { fadeIn } from "../animation";
 import { useDispatch } from "react-redux";
+import {useHistory} from "react-router-dom"
 
 const Header = () => {
    const dispatch = useDispatch()
+   const History = useHistory()
 
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARCHED" });
+    History.push("/")
   };
   return(
     <Logo variants={fadeIn} initial="hidden" animate="show" onClick={clearSearched}>
