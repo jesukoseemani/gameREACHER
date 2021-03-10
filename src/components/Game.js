@@ -16,16 +16,16 @@ const Game = ({ name, released, image, id , favorite, setFavorite}) => {
   
   
   const [icon, setIcon] = useState(false)
-  const saveToLocalStorage = () => {
+  // const saveToLocalStorage = () => {
 
-    localStorage.setItem("favorite", JSON.stringify(favorite));
+  //   localStorage.setItem("favorite", JSON.stringify(favorite));
      
-    }
+  //   }
   
-  useEffect(() => {
-    saveToLocalStorage();
-  // eslint-disable-next-line
-  },[favorite])
+  // useEffect(() => {
+  //   saveToLocalStorage();
+  // // eslint-disable-next-line
+  // },[favorite])
   
 
   useEffect(() => {

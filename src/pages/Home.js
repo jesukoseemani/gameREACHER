@@ -11,48 +11,48 @@ import Testes from "../components/Testes"
 // import {useLocation} from "react-router-dom"
 import { fadeIn } from "../animation";
 
+function useLocalStorage(key, initialValue) {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.log(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = value => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return [storedValue, setValue];
+}
+
+
 
 const Home = () => {
 // const Location = useLocation()
 // const pathId = Location.pathname.split("/")[2]
 
-
-const [favorite, setFavorite] = useState([])
-
-
-
-
+const [favorite, setFavorite] = useLocalStorage('favorite', [])
   const dispatch = useDispatch()
-
-
   useEffect(()=>{
    dispatch(gamesActions())
   },[dispatch])
 
 const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
 
-useEffect(() => {
-  getFromLocalStorage();
-  
-},[])
-
-const getFromLocalStorage = () => {
-
-  if(localStorage.getItem("favorite") === null){
-    localStorage.setItem("favorite", JSON.stringify([]));
-  }else{
-    let data = JSON.parse(localStorage.getItem("favorite"))
-    
-    setFavorite(data);
-    
-  }
-  
-}
-
   return(
     <GameList variants={fadeIn} initial="hidden" animate="show">
       <Nav />
-    {favorite.length ? (
+    {favorite.length > 0 && (
     <div className="watchlist">
      <h2>Your WatchList</h2>
       <Gamesf>
@@ -69,10 +69,10 @@ const getFromLocalStorage = () => {
       ))}
       </Gamesf>
       </div>
-      ) : ""}
+      )}
      
 
-     {searched.length ? (
+     {searched.length > 0 && (
        <div className="searched">
      <h2>Searched Games</h2>
       <Games>
@@ -89,7 +89,7 @@ const getFromLocalStorage = () => {
       ))}
       </Games>
       </div>
-        ) : ""}
+        )}
       <h2>Upcoming Games</h2>
       <Games>
       {upcoming.map(game => (
