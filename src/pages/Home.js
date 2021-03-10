@@ -163,6 +163,9 @@ const Gamesf = styled(Games)`
   grid-template-columns: repeat(auto-fit, minmax(30rem, 30rem));
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
+  @media (max-width: 600px){
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    }
 `
 
 
