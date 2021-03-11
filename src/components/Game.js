@@ -28,10 +28,10 @@ const Game = ({ name, released, image, id , favorite, setFavorite}) => {
   // },[favorite])
   
 
-  useEffect(() => {
-    let data = JSON.parse(localStorage.getItem("favorite"))
-    data.map(item => item.id === id ? setIcon(true) : "")
-  }, [id]);
+  // useEffect(() => {
+  //   let data = JSON.parse(localStorage.getItem("favorite"))
+  //   data.map(item => item.id === id ? setIcon(true) : "")
+  // }, [id]);
 
 
 const loadDetailsHandler = () => {
@@ -83,7 +83,7 @@ const clickHandler = () => {
        <div onClick={loadDetailsHandler}>
        <Link to={`/game/${id}`}>
 
-       <img src={image} alt={name} />
+       <img src={smallImage(image, 640)} alt={name} />
        </Link>
        </div>
     </StyledGame>
