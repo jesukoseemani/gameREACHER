@@ -83,7 +83,7 @@ const clickHandler = () => {
        <div onClick={loadDetailsHandler}>
        <Link to={`/game/${id}`}>
 
-       <img src={smallImage(image, 640)} alt={name} />
+       <img src={image} alt={name} />
        </Link>
        </div>
     </StyledGame>
