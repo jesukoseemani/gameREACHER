@@ -16,22 +16,22 @@ const Game = ({ name, released, image, id , favorite, setFavorite}) => {
   
   
   const [icon, setIcon] = useState(false)
-  // const saveToLocalStorage = () => {
+  const saveToLocalStorage = () => {
 
-  //   localStorage.setItem("favorite", JSON.stringify(favorite));
+    localStorage.setItem("favorite", JSON.stringify(favorite));
      
-  //   }
+    }
   
-  // useEffect(() => {
-  //   saveToLocalStorage();
-  // // eslint-disable-next-line
-  // },[favorite])
+  useEffect(() => {
+    saveToLocalStorage();
+  // eslint-disable-next-line
+  },[favorite])
   
 
-  // useEffect(() => {
-  //   let data = JSON.parse(localStorage.getItem("favorite"))
-  //   data.map(item => item.id === id ? setIcon(true) : "")
-  // }, [id]);
+  useEffect(() => {
+    let data = JSON.parse(localStorage.getItem("favorite"))
+    data.map(item => item.id === id ? setIcon(true) : "")
+  }, [id]);
 
 
 const loadDetailsHandler = () => {

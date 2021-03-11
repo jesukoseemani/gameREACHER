@@ -40,9 +40,10 @@ function useLocalStorage(key, initialValue) {
 const Home = () => {
 // const Location = useLocation()
 // const pathId = Location.pathname.split("/")[2]
-
+const dispatch = useDispatch()
 const [favorite, setFavorite] = useLocalStorage('favorite', [])
-  const dispatch = useDispatch()
+ 
+
   useEffect(()=>{
    dispatch(gamesActions())
   },[dispatch])
