@@ -59,13 +59,6 @@ const clickHandler = () => {
 
 }
 
-
-
-
-
-
-
-
   return(
      <StyledGame >
        
@@ -105,6 +98,7 @@ const StyledGame = styled(motion.div)`
     cursor: pointer;
   }
 `;
+
 const StyledPi = styled.div`
 display: flex;
 justify-content: space-between;

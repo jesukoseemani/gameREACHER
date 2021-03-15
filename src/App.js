@@ -5,6 +5,7 @@ import Footer from "./components/Footer"
 import Gamedetails from "./components/Gamedetails"
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/Header"
+import Nav from "./components/Nav"
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <div className="App">
      <GlobalStyles />
       <Header />
+      <Nav />
     
     <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.pathname}>

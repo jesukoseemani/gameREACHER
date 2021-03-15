@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux"
 import {gamesActions} from "../Actions/gamesActions"
 import styled from "styled-components"
 import {motion} from "framer-motion"
-import Nav from "../components/Nav"
 import Game from "../components/Game"
 import Testes from "../components/Testes"
 
@@ -52,7 +51,27 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
 
   return(
     <GameList variants={fadeIn} initial="hidden" animate="show">
-      <Nav />
+      
+     {searched.length > 0 && (
+       <div className="searched">
+     <h2>Searched Games</h2>
+      <Games>
+      {searched.map(game => (
+        <Game 
+        name={game.name}
+        released={game.released}
+        id={game.id}
+        image={game.background_image}
+        key={game.id}
+        favorite= {favorite}
+        setFavorite= {setFavorite}
+        />
+      ))}
+      </Games>
+      </div>
+        )}
+
+
     {favorite.length > 0 && (
     <div className="watchlist">
      <h2>Your WatchList</h2>
@@ -72,25 +91,7 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
       </div>
       )}
      
-
-     {searched.length > 0 && (
-       <div className="searched">
-     <h2>Searched Games</h2>
-      <Games>
-      {searched.map(game => (
-        <Game 
-        name={game.name}
-        released={game.released}
-        id={game.id}
-        image={game.background_image}
-        key={game.id}
-        favorite= {favorite}
-        setFavorite= {setFavorite}
-        />
-      ))}
-      </Games>
-      </div>
-        )}
+     
       <h2>Upcoming Games</h2>
       <Games>
       {upcoming.map(game => (
@@ -142,12 +143,15 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
 const GameList = styled(motion.div)`
   padding: 0rem 5rem;
   @media (max-width: 600px){
-    padding: 0rem 2.5rem;
+    padding: 0rem 3rem;
     }
+    /* @media (max-width: 450px){
+    padding: 0rem .5rem 0rem 1.9rem;
+    } */
   h2 {
     padding: 5rem 0rem;
     @media (max-width: 600px){
-       font-size: 2rem;
+       font-size: 1.8rem;
        padding: 2rem 0rem;
     }
   }
@@ -159,15 +163,21 @@ const Games = styled(motion.div)`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
+  @media (max-width: 400px){
+    grid-template-columns: 1fr;
+    }
 `;
 const Gamesf = styled(Games)`
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 30rem));
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 25rem));
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
-  @media (max-width: 600px){
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  @media (max-width: 500px){
+    grid-template-columns: repeat(auto-fit, 20rem);
     }
+  @media (max-width: 400px){
+    grid-template-columns: 1fr;
+    }
+  
 `
-
 
 export default Home

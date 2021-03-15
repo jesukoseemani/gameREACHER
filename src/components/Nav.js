@@ -104,17 +104,22 @@ useEffect(() => {
 };
 
 const StyledNav = styled(motion.nav)`
-  padding: 3rem 5rem;
+  width:100%;
+  margin: 3rem 5rem;
   text-align: center;
   @media (max-width: 950px){
-    padding: 3rem .7rem;
+    margin: 3rem .7rem;
     }
     @media (max-width: 600px){
-      padding: 3rem .7rem;
+      margin: 3rem .7rem;
     }
+    @media (max-width: 430px){
+      margin: 3rem .3rem;
+    }
+    
   input {
     width: 50%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     padding: 0.5rem;
     border: none;
     margin-top: 1rem;
@@ -125,9 +130,12 @@ const StyledNav = styled(motion.nav)`
     @media (max-width: 600px){
        width:90%
     }
+    /* @media (max-width: 408px){
+       width:100%
+    } */
   }
   button {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     border: none;
     padding: 0.6rem  2rem;
     cursor: pointer;
