@@ -253,7 +253,7 @@ const Rating = styled.div`
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   font-size: 2rem;
-  color: #FF9529;
+  color: #FF7676;
   @media (max-width: 950px){
       font-size: 1rem;
     }

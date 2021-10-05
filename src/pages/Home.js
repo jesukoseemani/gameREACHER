@@ -59,7 +59,7 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
       {searched.map(game => (
         <Game 
         name={game.name}
-        released={game.released}
+        rating={game.rating}
         id={game.id}
         image={game.background_image}
         key={game.id}
@@ -79,7 +79,7 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
       {favorite.map(fav => (
         <Testes 
         name={fav.name}
-        released={fav.released}
+        rating={fav.rating}
         id={fav.id}
         image={fav.image}
         key={fav.id}
@@ -97,7 +97,7 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
       {upcoming.map(game => (
         <Game 
         name={game.name}
-        released={game.released}
+        rating={game.rating}
         id={game.id}
         image={game.background_image}
         key={game.id}
@@ -112,7 +112,7 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
       {popular.map(game => (
         <Game 
         name={game.name}
-        released={game.released}
+        rating={game.rating}
         id={game.id}
         image={game.background_image}
         key={game.id}
@@ -127,7 +127,7 @@ const {popular,upcoming,newGames,searched} = useSelector((state) => state.games)
       {newGames.map(game => (
         <Game 
         name={game.name}
-        released={game.released}
+        rating={game.rating}
         id={game.id}
         image={game.background_image}
         key={game.id}

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../img/logo.svg";
+import logo from "../img/Peachpuff Brush .png";
 import {useDispatch} from "react-redux";
 
 const Footer = () => {
@@ -13,7 +13,6 @@ const Footer = () => {
     <Styledfooter>
        <Logo onClick={clearSearched}>
         <img src={logo} alt="logo" />
-        <h1>gameREACHER</h1>
       </Logo>
       <Styleddesign>
         <p>This is designed by koseemani</p>
@@ -44,8 +43,9 @@ const Logo = styled.div`
     padding: .2rem;
     }
   img {
-    height: 2rem;
-    width: 2rem;
+    height: 4rem;
+    width: 15rem;
+    object-fit: cover;
   }
   h1{
     font-size: 1.6rem;

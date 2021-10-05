@@ -6,9 +6,9 @@ import {detailAction} from "../Actions/detailAction"
 import { Link } from "react-router-dom"
 import { smallImage} from "../util"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKissBeam , faKissWinkHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const Game = ({ name, released, image, id , favorite, setFavorite}) => {
+const Game = ({ name, rating, image, id , favorite, setFavorite}) => {
   
 
   const dispatch = useDispatch()
@@ -46,7 +46,7 @@ const clickHandler = () => {
       ...favorite,
       {
       name, 
-      released, 
+      rating, 
       image, 
       id,
       
@@ -58,18 +58,28 @@ const clickHandler = () => {
  
 
 }
+const starMesh = (count) => {
+
+  const starPercentage = (count / 5) * 100;
+  const starRounded = Math.round(starPercentage / 10) * 10
+
+  return starRounded;
+}
 
   return(
      <StyledGame >
        
        <h3>{name}</h3>
        <StyledPi>
-       <div className="icon-word">
-       <p>{released}</p>
-       </div>
+       <Rating>
+          <div class="stars-outer">
+          <div style={{width: `${starMesh(rating)}%`}} 
+          class="stars-inner" id="sta"></div>
+          </div>
+        </Rating>
        <div className="icon">
        
-       <FontAwesomeIcon onClick={clickHandler} style={{color: icon ? "#FF0000": "#7a7a7a"}} icon={icon ? faKissWinkHeart : faKissBeam} size="2x" / >
+       <FontAwesomeIcon onClick={clickHandler} style={{color: icon ? "#FF0000": "#7a7a7a"}} icon={icon ? faHeart : faHeart} size="2x" / >
        
        </div>
        </StyledPi >
@@ -109,5 +119,42 @@ margin: .5rem .8rem;
   cursor: pointer;
 }
 `
+const Rating = styled.div`
+ /* @media (max-width: 600px){
+     p{
+       display: none
+     }
+    } */
+.stars-outer {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1rem;
+  color: #ccc;
+ 
+}
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0%;
+
+  &::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1rem;
+  color: #FF7676;
+  
+}
+}`
 
 export default Game

@@ -14,12 +14,12 @@ function App() {
   
   return (
     <div className="App">
-     <GlobalStyles />
+    <GlobalStyles />
       <Header />
       <Nav />
     
     <AnimatePresence exitBeforeEnter>
-        <Switch location={location} key={location.pathname}>
+     <Switch location={location} key={location.pathname}>
      <Route path="/" exact>
      <Home />
      </Route>
